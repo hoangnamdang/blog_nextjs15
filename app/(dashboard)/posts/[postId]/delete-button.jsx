@@ -8,7 +8,7 @@ export default function DeleteButton({ id }) {
   const router = useRouter();
   const handleDelete = async () => {
     setLoading(true);
-    const response = await fetch(`http://localhost:3000/api/posts/${id}`, {
+    const response = await fetch(`/api/posts/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
