@@ -1,0 +1,9 @@
+https://github.com/ankush-003/supa-auth
+https://github.com/vercel/next.js/discussions/49625
+https://github.com/vercel/next.js/discussions/54355
+https://github.com/vercel/next.js/discussions/51371
+https://github.com/azeek21/Next-Notes
+
+error supabase
+https://github.com/supabase/supabase-js/issues/1452
+https://github.com/supabase/supabase-js/issues/1437
