@@ -21,3 +21,14 @@ export const handleFormSubmitServer = async (prevState, dataF) => {
   revalidatePath("/posts", "page");
   redirect("/posts");
 };
+
+export const handleDelete = async (id) => {
+  const supabase = await createClient();
+  const { error } = await supabase.from("posts").delete().eq("id", id);
+
+  if (error) {
+    redirect("/error");
+  }
+  revalidatePath("/posts", "page");
+  redirect("/posts");
+};

@@ -1,16 +1,23 @@
+"use client";
 import { AppBar, Box, Stack, Toolbar, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../../public/next.svg";
-import { createClient } from "../../utils/supabase/server";
+import { createClient } from "../../utils/supabase/client";
 import { PATHS } from "../constant/paths";
 import ButtonLogin from "./form/button-login";
 import ButtonLogout from "./form/button-logout";
 import ButtonSignup from "./form/button-signup";
-export default async function Navbar() {
-  const supabase = await createClient();
-  const { data } = await supabase.auth.getUser();
-
+import { useEffect, useState } from "react";
+export default function Navbar() {
+  const [user, setUser] = useState("");
+  useEffect(() => {
+    (async () => {
+      const supabase = await createClient();
+      const { data } = await supabase.auth.getUser();
+      setUser(data?.user?.email || "");
+    })();
+  }, []);
   return (
     <Box mb={1} sx={{ borderBottom: "1px solid gray" }}>
       <AppBar position="static" color="transparent" elevation={0}>
@@ -32,13 +39,13 @@ export default async function Navbar() {
                 </Link>
               );
             })}
-            {data?.user?.email && (
+            {user && (
               <>
-                <Typography>Hello: {data?.user?.email}</Typography>
+                <Typography>Hello: {user}</Typography>
                 <ButtonLogout />
               </>
             )}
-            {!data?.user?.email && (
+            {!user && (
               <>
                 <ButtonLogin />
                 <ButtonSignup />

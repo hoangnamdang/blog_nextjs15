@@ -2,7 +2,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import { notFound } from "next/navigation";
 import { createPublicClient } from "../../../../utils/supabase/public-client";
 import { createClient } from "../../../../utils/supabase/server";
-import DeleteButton from "./delete-button";
+import DeleteButtonAction from "./delete-button-action";
 export const dynamic = "force-dynamic";
 export const generateMetadata = async (context) => {
   const params = await context?.params;
@@ -60,10 +60,13 @@ export default async function PostDetail({ params }) {
         alignItems={"center"}
         justifyContent={"space-between"}
       >
-        <Typography component={"h2"}>Post Detail</Typography>
-        {post.email === user?.email && <DeleteButton id={post?.id} />}
+        <Typography component={"h2"} variant="h5">
+          Post Detail
+        </Typography>
+        {/* {post.email === user?.email && <DeleteButton id={post?.id} />} */}
+        {post.email === user?.email && <DeleteButtonAction id={post?.id} />}
       </Stack>
-      <Typography component={"h1"} variant="h3">
+      <Typography component={"h1"} variant="h6">
         {post?.title}
       </Typography>
       <Typography>{post?.description}</Typography>
